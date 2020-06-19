@@ -15,7 +15,9 @@
 ## Change Log
 <!-- <!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an examples: -->
 
-16-06-2020 19:01 - Application now has a fully-functional express server, with a GET route for the location resource.
+16-06-2020 19:20 - Application now has a fully-functional express server, with a GET route for the location resource.
+
+16-06-2020 19:56 - Application will now give back 404 and 500 errors.
 
 ## Credits and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
@@ -23,12 +25,24 @@
 
 
 
-Number and name of feature: Repository Set Up
+Number and name of feature: Feature #1 Repository Set Up
 
 Estimate of time needed to complete: 1 hour
 
 Start time: 18:11 Thursday 18June
 
-Finish time: _____
+Finish time: 19:20 Thursday 18June
 
-Actual time needed to complete: _____
+Actual time needed to complete: 1 hr 9 min
+
+
+
+Number and name of feature: Feature #2 Errors
+
+Estimate of time needed to complete: 45 min
+
+Start time: 19:20 Thursday 18June
+
+Finish time: 19:56 Thursday 18June
+
+Actual time needed to complete: 36 min
