@@ -7,7 +7,7 @@ const cors = require('cors');
 
 //APP SETUP
 //brings in the things form the .env file
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 
 //gets instance of express for the app
 const app = express();
@@ -23,12 +23,10 @@ app.get('/', (request, response) => {
 app.get('/location', (request, response) => {
   let data = require('./data/location.json');
   let city = request.query.city;
-  console.log(city);
 
   //run data through constructor function to match contract
 
   let realData = new Location(data[0],city);
-  console.log(realData);
 
   //Return an object which contains the necessary information for correct client rendering. See the sample response.
   response.status(200).json(realData);
@@ -39,25 +37,15 @@ app.get('/location', (request, response) => {
 app.get('/weather', (request, response) => {
   let weather = require('./data/weather.json');
 
-  let weatherArr = [];
-
   //itirate through the weather data to display all weather times
-  weather.data.forEach(property => {
-
-    //variables to hold forecast and time
-    let forecast = property.weather.description;
-    let time = property.valid_date;
+  let realWeather = weather.data.map(object => {
 
     //run data through constructor function to match contract
-    let realWeather = new Weather(forecast,time);
-
-    //push the object to weatherArr
-    weatherArr.push(realWeather);
-    // console.log(weatherArr);
+    return new Weather(object.weather.description,object.valid_date);
   });
 
   //Return an object which contains the necessary information for correct client rendering. See the sample response.
-  response.status(200).json(weatherArr);
+  response.status(200).json(realWeather);
 
 });
 
