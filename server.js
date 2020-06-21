@@ -15,6 +15,9 @@ const app = express();
 //brings in cors
 app.use( cors() );
 
+app.get('/', (request, response) => {
+  response.status(200).send(console.log('Success!'));
+});
 
 //Create a route with a method of `get` and a path of `/location`. The route callback should invoke a function to convert the search query to a latitude and longitude. The function should use the provided JSON data.
 app.get('/location', (request, response) => {
@@ -50,7 +53,7 @@ app.get('/weather', (request, response) => {
 
     //push the object to weatherArr
     weatherArr.push(realWeather);
-    console.log(weatherArr);
+    // console.log(weatherArr);
   });
 
   //Return an object which contains the necessary information for correct client rendering. See the sample response.
@@ -71,6 +74,10 @@ function Weather (forecast, time){
   this.time = new Date(time).toDateString();
 }
 
+
+app.listen( PORT, () => console.log('Server is running on port', PORT));
+
+
 app.use('*', (request, response) => {
   response.status(404).send('Sorry, something went wrong');
 });
@@ -79,4 +86,4 @@ app.use((error, request, response, next) => {
   response.status(500).send('Sorry, something went wrong');
 });
 
-app.listen( PORT, () => console.log('Server is running on port', PORT));
+
