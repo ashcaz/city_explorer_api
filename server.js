@@ -32,6 +32,32 @@ app.get('/location', (request, response) => {
 
 });
 
+//Create a route with a method of `get` and a path of `/weather`. The callback should use the provided JSON data.
+app.get('/weather', (request, response) => {
+  let weather = require('./data/weather.json');
+
+  let weatherArr = [];
+
+  //itirate through the weather data to display all weather times
+  weather.data.forEach(property => {
+
+    //variables to hold forecast and time
+    let forecast = property.weather.description;
+    let time = property.valid_date;
+
+    //run data through constructor function to match contract
+    let realWeather = new Weather(forecast,time);
+
+    //push the object to weatherArr
+    weatherArr.push(realWeather);
+    console.log(weatherArr);
+  });
+
+  //Return an object which contains the necessary information for correct client rendering. See the sample response.
+  response.status(200).json(weatherArr);
+
+});
+
 //Create a constructor function will ensure that each object is created according to the same format when your server receives the external data. Ensure your code base uses a constructor function for this resource.
 function Location (obj, query){
   this.search_query = query;
@@ -40,12 +66,11 @@ function Location (obj, query){
   this.longitude = obj.lon;
 }
 
-function Weather (obj){
-  this.search_query = city;
-  this.formatted_query = obj.display_name;
-  this.latitude = obj.lat;
-  this.longitude = obj.lon;
+function Weather (forecast, time){
+  this.forecast = forecast;
+  this.time = new Date(time).toDateString();
 }
+
 app.use('*', (request, response) => {
   response.status(404).send('Sorry, something went wrong');
 });
