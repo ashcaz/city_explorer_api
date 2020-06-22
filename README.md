@@ -26,7 +26,7 @@
 - dotenv
 - cors
 - jquery
-- API
+- APIs
   - LocationIQ
   - Weatherbit
   - Hiking Project Data API
@@ -47,6 +47,8 @@
 21-06-2020 17:39 - Now Search any location you want using LocationIQ API
 
 21-06-2020 18:47 - When you search a city it now gives you a 16 day weather forecast thanks to Weatherbit.io API
+
+21-06-2020 22:41 - With the newly added Hiking Project Data API - you can see popular trails while searching cities!
 
 ## Credits and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
@@ -131,3 +133,14 @@ Start time: 17:45 Sunday 21June
 Finish time:  18:47 Sunday 21June
 
 Actual time needed to complete: 1 hour 2 min
+
+
+Number and name of feature: Feature #8 Trails API
+
+Estimate of time needed to complete: 2 hours
+
+Start time: 19:30 Sunday 21June
+
+Finish time:  22:41 Sunday 21June
+
+Actual time needed to complete: 3 hours 11 mins
