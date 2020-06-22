@@ -10,6 +10,7 @@ const superagent = require('superagent');
 //brings in the things form the .env file
 const PORT = process.env.PORT || 3000;
 const GEOCODE = process.env.GEOCODE;
+const WEATHERBIT = process.env.WEATHERBIT;
 
 //gets instance of express for the app
 const app = express();
@@ -33,7 +34,6 @@ app.get('/location', (request, response) => {
 
       //run data through constructor function to match contract
       let realData = new Location(data.body[0],city);
-      console.log(realData);
 
       //Return an object which contains the necessary information for correct client rendering. See the sample response.
       response.status(200).json(realData);
@@ -46,18 +46,30 @@ app.get('/location', (request, response) => {
 
 //Create a route with a method of `get` and a path of `/weather`. The callback should use the provided JSON data.
 app.get('/weather', (request, response) => {
-  let weather = require('./data/weather.json');
 
-  //itirate through the weather data to display all weather times
-  let realWeather = weather.data.map(object => {
+  const coordinates = {
+    lat: request.query.latitude,
+    lon: request.query.longitude
+  };
+  let API = `https://api.weatherbit.io/v2.0/forecast/daily?lat=${coordinates.lat}&lon=${coordinates.lon}&key=${WEATHERBIT}`;
 
-    //run data through constructor function to match contract
-    return new Weather(object.weather.description,object.valid_date);
-  });
+  superagent.get(API)
+    .then(weather =>{
+      console.log(weather.body.data);
+      //itirate through the weather data to display all weather times
+      let realWeather = weather.body.data.map(object => {
 
-  //Return an object which contains the necessary information for correct client rendering. See the sample response.
-  response.status(200).json(realWeather);
+        //run data through constructor function to match contract
+        return new Weather(object.weather.description,object.valid_date);
 
+      });
+      //Return an object which contains the necessary information for correct client rendering. See the sample response.
+      response.status(200).json(realWeather);
+      console.log(realWeather);
+    })
+    .catch(() => {
+      response.status(500).send('Sorry, the weather is having issues loading');
+    });
 });
 
 //Create a constructor function will ensure that each object is created according to the same format when your server receives the external data. Ensure your code base uses a constructor function for this resource.
