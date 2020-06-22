@@ -33,9 +33,11 @@
 
 18-06-2020 19:56 - Application will now give back 404 and 500 errors.
 
-20-06-2020 16:49 - Application will now display Location data
+20-06-2020 16:49 - Application will now display Location using static json files
 
-20-06-2020 19:27 - Application will now display weather data!
+20-06-2020 20:40 - Application will now display weather data using static json files!
+
+20-06-2020 21:10 - Application uses .map() instead of forEach to return weater array of objects
 
 ## Credits and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
@@ -74,7 +76,7 @@ Start time: 20:02 Thursday 18June
 
 Finish time: 16:49  Saturday 20June
 
-Actual time needed to complete: 4 hors and 45 min
+Actual time needed to complete: 4 hours and 45 min
 
 
 
@@ -82,19 +84,30 @@ Number and name of feature: Feature #4 Weather
 
 Estimate of time needed to complete: 1 hour
 
-Start time: 18:30 Thursday 20June
+Start time: 18:30 Saturday 20June
 
 Finish time: 20:40  Saturday 20June
 
 Actual time needed to complete: 2 hours and 10 min
 
 
-Number and name of feature: Feature #6 .map()
+Number and name of feature: Feature #5 .map()
 
 Estimate of time needed to complete: 30 min
 
-Start time: 20:40 Thursday 20June
+Start time: 20:40 Saturday 20June
 
-Finish time:   Saturday 20June
+Finish time: 21:10 Saturday 20June
+
+Actual time needed to complete: 30 min
+
+
+Number and name of feature: Feature #6 Geocode API
+
+Estimate of time needed to complete: 1.5 hours
+
+Start time: 16:40 Sunday 21June
+
+Finish time:  Sunday 21June
 
 Actual time needed to complete: 
