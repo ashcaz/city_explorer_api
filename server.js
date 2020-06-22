@@ -11,6 +11,7 @@ const superagent = require('superagent');
 const PORT = process.env.PORT || 3000;
 const GEOCODE = process.env.GEOCODE;
 const WEATHERBIT = process.env.WEATHERBIT;
+const TRAILS = process.env.TRAILS;
 
 //gets instance of express for the app
 const app = express();
@@ -55,7 +56,6 @@ app.get('/weather', (request, response) => {
 
   superagent.get(API)
     .then(weather =>{
-      console.log(weather.body.data);
       //itirate through the weather data to display all weather times
       let realWeather = weather.body.data.map(object => {
 
@@ -65,10 +65,37 @@ app.get('/weather', (request, response) => {
       });
       //Return an object which contains the necessary information for correct client rendering. See the sample response.
       response.status(200).json(realWeather);
-      console.log(realWeather);
+    })
+    .catch( () => {
+      response.status(500).send('Sorry, the weather is having issues loading');
+    });
+});
+
+//Create a route with a method of get and a path of /trails. The callback should make a Superagent-proxied request to the Hiking Project API using the necessary location information.
+app.get('/trails', (request, response) => {
+
+  const coordinates = {
+    lat: request.query.latitude,
+    lon: request.query.longitude
+  };
+  let API = `https://www.hikingproject.com/data/get-trails?lat=${coordinates.lat}&lon=${coordinates.lon}&maxDistance=10&key=${TRAILS}`;
+
+  superagent.get(API)
+    .then(trail =>{
+      // console.log(trail.body.trails[0].conditionDate);
+      //itirate through the weather data to display all weather times
+      let trails = trail.body.trails.map(object => {
+
+        //run data through constructor function to match contract
+        return new Trails(object.name,object.location,object.length, object.stars, object.starVotes, object.summary, object.url, object.condition_status, object.conditionDate);
+
+      });
+      //Return an object which contains the necessary information for correct client rendering. See the sample response.
+      console.log(trails);
+      response.status(200).json(trails);
     })
     .catch(() => {
-      response.status(500).send('Sorry, the weather is having issues loading');
+      response.status(500).send('Sorry, the trails you requested are having trouble loading');
     });
 });
 
@@ -83,6 +110,19 @@ function Location (obj, query){
 function Weather (forecast, time){
   this.forecast = forecast;
   this.time = new Date(time).toDateString();
+}
+
+function Trails (name, location, length, stars, star_votes, summary, trail_url, conditions, conditionDate){
+  this.name = name;
+  this.location = location;
+  this.length = length;
+  this.stars = stars;
+  this.star_votes = star_votes;
+  this.summary = summary;
+  this.trail_url = trail_url;
+  this.conditions = conditions;
+  this.condition_date = new Date(conditionDate.slice(0,10)).toDateString();
+  this.condition_time = conditionDate.slice(11,19);
 }
 
 
