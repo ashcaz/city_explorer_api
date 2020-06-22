@@ -4,6 +4,7 @@
 **Version**: 1.0.0 - basic setup of file structure for app
 2.0.0 - Get location data to appear from static json file
 3.0.0 - Get weather data to appear using a static json file
+4.0.0
 
 ## Overview
 <!-- Provide a high level overview of what this application is and why you are building it, beyond the fact that it's an assignment for this class. (i.e. What's your problem domain?) -->
@@ -25,6 +26,10 @@
 - dotenv
 - cors
 - jquery
+- API
+  - LocationIQ
+  - Weatherbit
+  - Hiking Project Data API
 
 ## Change Log
 <!-- <!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an examples: -->
@@ -38,6 +43,10 @@
 20-06-2020 20:40 - Application will now display weather data using static json files!
 
 20-06-2020 21:10 - Application uses .map() instead of forEach to return weater array of objects
+
+21-06-2020 17:39 - Now Search any location you want using LocationIQ API
+
+21-06-2020 18:47 - When you search a city it now gives you a 16 day weather forecast thanks to Weatherbit.io API
 
 ## Credits and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
@@ -108,6 +117,17 @@ Estimate of time needed to complete: 1.5 hours
 
 Start time: 16:40 Sunday 21June
 
-Finish time:  Sunday 21June
+Finish time: 17:39 Sunday 21June
 
-Actual time needed to complete: 
+Actual time needed to complete: 59 min
+
+
+Number and name of feature: Feature #7 Weatherbit API
+
+Estimate of time needed to complete: 1 hour and 20 min
+
+Start time: 17:45 Sunday 21June
+
+Finish time:  18:47 Sunday 21June
+
+Actual time needed to complete: 1 hour 2 min
